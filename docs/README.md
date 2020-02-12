@@ -106,7 +106,7 @@ ____
        "login": "demo",
        "password": "DEMO",
        "idioma": "pt-pt",
-       "server": "LOCALHOST\SQLEXPRESS",
+       "server": "LOCALHOST\\SQLEXPRESS",
        "sistema": "SISTEMA"
    }
    ~~~
