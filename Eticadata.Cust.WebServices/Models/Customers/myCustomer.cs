@@ -7,6 +7,7 @@
         public bool GenerateNewCode { get; set; } = false;
         public int Code { get; set; } = 0;
         public string Name { get; set; } = "";
+        public string FiscalId { get; set; } = "";
         public string AddressLine1 { get; set; } = "";
         public string AddressLine2 { get; set; } = "";
         public string Locality { get; set; } = "";

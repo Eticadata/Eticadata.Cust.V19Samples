@@ -5,6 +5,7 @@ using Eticadata.ERP.EtiEnums;
 using Eticadata.Views.Reports;
 using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Net;
 using System.Net.Http;
@@ -146,7 +147,7 @@ namespace Eticadata.Cust.WebServices.Controllers
         [HttpGet]
         [Authorize]
         //GET api/Invoices/PrintSalesDoc?fiscalYear=2018&section=1&docType=FAT&number=1
-        public IHttpActionResult PrintSalesDoc([FromUri] string fiscalYear, [FromUri] string section, [FromUri] string docType, [FromUri] int number)
+        public IHttpActionResult PrintSalesDoc([FromUri] string fiscalYear, [FromUri] string section, [FromUri] string docType, [FromUri] int number, [FromUri] bool toFile = false)
         {
             try
             {
@@ -158,7 +159,14 @@ namespace Eticadata.Cust.WebServices.Controllers
                     Number = number,
                 };
 
-                byte[] reportBytes = Functions.GetReportBytes(TpDocumentoAEmitir.Vendas , docKey);
+                byte[] reportBytes = Functions.GetReportBytes(TpDocumentoAEmitir.Encomendas , docKey);
+
+                if (toFile)
+                {
+                    string docFileNAme = System.Web.Hosting.HostingEnvironment.MapPath($@"~/App_Data/{docType}_{number}.pdf");
+                    File.WriteAllBytes(docFileNAme, reportBytes);
+                    return Ok(docFileNAme);
+                }
 
                 return Ok(reportBytes);
             }

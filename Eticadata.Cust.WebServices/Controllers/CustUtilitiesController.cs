@@ -37,7 +37,7 @@ namespace Eticadata.Cust.WebServices.Controllers
                     SoExportacao = false,
                     ToPrinter = true,
                     IncrementPrintCount = true,
-                    FrontOffBackOff = ReportApplication.BackOffice,
+                    //FrontOffBackOff = ReportApplication.BackOffice,
                     ExportaFormato = "1"
                 };
 

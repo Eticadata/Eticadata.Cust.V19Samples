@@ -1,0 +1,21 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <script src="../../ViewModels/SamplesAPI/EditCustomer.js"></script>
+    <title></title>
+</head>
+<body>
+    <p>New <input id="new" type="checkbox" /></p>
+    <p>Code <input id="code" type="text" onblur="getCustomer()" /></p>
+    <p>Name <input id="name" type="text" /></p>
+    <p>Fiscal Id <input id="fiscalId" type="text" /></p>
+    <p>Address 1 <input id="address1" type="text" /></p>
+    <p>Address 2 <input id="address2" type="text" /></p>
+    <p>Postal Code <input id="postalcode" type="text" /> <input id="locality" type="text" /></p>
+    <p>Email <input id="email" type="text" /></p>
+    <p>Subzone <input id="subzone" type="text" /></p>
+    <p>Payment Term <input id="payterm" type="text" /></p>
+    <button onclick="saveCustomer()">Update</button>
+</body>
+</html>

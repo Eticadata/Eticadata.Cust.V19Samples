@@ -236,6 +236,7 @@
     <Compile Include="Controllers\CustomerOrdersTAController.cs" />
     <Compile Include="Controllers\SettlementTAController.cs" />
     <Compile Include="Controllers\CustUtilitiesController.cs" />
+    <Compile Include="Controllers\StockMovsController.cs" />
     <Compile Include="Helpers\DocumentKey.cs" />
     <Compile Include="Helpers\DocumentResult.cs" />
     <Compile Include="Helpers\Functions.cs" />
@@ -249,10 +250,13 @@
     <Compile Include="Models\RepairOrders\myRepairOrder.cs" />
     <Compile Include="Models\Sales\mySale.cs" />
     <Compile Include="Models\Settlements\mySettlement.cs" />
+    <Compile Include="Models\Stocks\RecalcInput.cs" />
+    <Compile Include="Models\Stocks\Stock.cs" />
     <Compile Include="Models\Utilities\PrintInput.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Client\SamplesAPI\EditCustomer.html" />
     <Content Include="Themes\css\animate.min.css" />
     <Content Include="Themes\css\bootstrap.min.css" />
     <Content Include="Themes\css\jquery.fancybox.css" />
@@ -291,6 +295,7 @@
   </ItemGroup>
   <ItemGroup />
   <ItemGroup>
+    <Content Include="ViewModels\SamplesAPI\EditCustomer.js" />
     <Content Include="ViewModels\SamplesAPI\SamplesAPIViewModel.js" />
     <Content Include="web.config" />
     <Content Include="Themes\fonts\elegant-theme-line.eot" />
@@ -300,6 +305,7 @@
     <Content Include="Themes\fonts\glyphicons-halflings-regular.ttf" />
     <Content Include="Themes\fonts\glyphicons-halflings-regular.woff" />
     <Content Include="Themes\fonts\glyphicons-halflings-regular.woff2" />
+    <Content Include="Documents\Postman Scripts\Eticadata API - Templates.postman_collection.json" />
     <None Include="web.Debug.config">
       <DependentUpon>web.config</DependentUpon>
     </None>
@@ -336,13 +342,13 @@
       </FlavorProperties>
     </VisualStudio>
   </ProjectExtensions>
-  <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
+  <!-- <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
     <PropertyGroup>
       <ErrorText>This project references NuGet package(s) that are missing on this computer. Use NuGet Package Restore to download them.  For more information, see http://go.microsoft.com/fwlink/?LinkID=322105. The missing file is {0}.</ErrorText>
     </PropertyGroup>
     <Error Condition="!Exists('..\packages\Microsoft.Net.Compilers.2.6.1\build\Microsoft.Net.Compilers.props')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\Microsoft.Net.Compilers.2.6.1\build\Microsoft.Net.Compilers.props'))" />
     <Error Condition="!Exists('..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.1.0.8\build\net45\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.props')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.1.0.8\build\net45\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.props'))" />
-  </Target>
+  </Target>  -->
   <PropertyGroup>
     <PostBuildEvent>:Copy assembly to application webserver folder
 xcopy "$(TargetDir)Eticadata.Cust.*.dll" "C:\eticadata Sites\ERP v19\Eticadata.Web\Bin" /E /Y

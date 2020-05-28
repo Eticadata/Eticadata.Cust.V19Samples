@@ -1,5 +1,8 @@
 ﻿using Eticadata.Cust.WebServices.Models.Customers;
+using Eticadata.ERP;
+using Eticadata.ERP.EtiEnums;
 using System;
+using System.Collections.Generic;
 using System.Reflection;
 using System.Web.Http;
 
@@ -24,6 +27,79 @@ namespace Eticadata.Cust.WebServices.Controllers
             };
 
             return customer;
+        }
+
+        [HttpGet]
+        [Authorize]
+        public IHttpActionResult FindCustomer([FromUri] int Code)
+        {
+            try
+            {
+                Cliente cliente = Eti.Aplicacao.Tabelas.Clientes.Find(Code);
+                myCustomer customer = new myCustomer()
+                {
+                    Code = Code,
+                    Name = cliente.Nome,
+                    AddressLine1 = cliente.MoradaLin1,
+                    AddressLine2 = cliente.MoradaLin2,
+                    PostalCode = cliente.Postal,
+                    Locality = cliente.Localidade,
+                    Email = cliente.Email,
+                    PaymentTerm = cliente.CodCondPag,
+                    SubZone = cliente.AbrevSubZona,
+                    FiscalId = cliente.NumContrib,
+                    GenerateNewCode = cliente.IsNew ? true : false
+                };
+
+                return Ok(customer);
+
+            }
+            catch (Exception)
+            {
+
+                throw;
+            }
+        }
+
+        [HttpPost]
+        [Authorize]
+        public IHttpActionResult FindCustomers([FromBody] string codes)
+        {
+            try
+            {
+                string[] _codes = codes.Split(',');
+                List<myCustomer> customers = new List<myCustomer>();
+                foreach (var _code in _codes)
+                {
+                    Cliente cliente = Eti.Aplicacao.Tabelas.Clientes.Find(int.Parse(_code));
+                    myCustomer customer = new myCustomer()
+                    {
+                        Code = int.Parse(_code),
+                        Name = cliente.Nome,
+                        AddressLine1 = cliente.MoradaLin1,
+                        AddressLine2 = cliente.MoradaLin2,
+                        PostalCode = cliente.Postal,
+                        Locality = cliente.Localidade,
+                        Email = cliente.Email,
+                        PaymentTerm = cliente.CodCondPag,
+                        SubZone = cliente.AbrevSubZona,
+                        FiscalId = cliente.NumContrib,
+                        GenerateNewCode = cliente.IsNew ? true : false
+                    };
+
+                    customers.Add(customer);
+                }
+
+
+
+                return Ok(customers);
+
+            }
+            catch (Exception)
+            {
+
+                throw;
+            }
         }
 
         [HttpPost]
@@ -52,7 +128,7 @@ namespace Eticadata.Cust.WebServices.Controllers
                 customer.Localidade = pCustomer.Locality;
                 customer.Postal = pCustomer.PostalCode;
                 customer.Email = pCustomer.Email;
-                customer.NumContrib = "502395028";
+                customer.NumContrib = pCustomer.FiscalId;
                 customer.AbrevSubZona = pCustomer.SubZone;
                 customer.ALteraSubZona(pCustomer.SubZone);
 
@@ -76,7 +152,7 @@ namespace Eticadata.Cust.WebServices.Controllers
                 return BadRequest(errorDescription);
             }
 
-            return Ok("");
+            return Ok(pCustomer);
         }
     }
 }
