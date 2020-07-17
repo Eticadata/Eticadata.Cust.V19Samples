@@ -1,0 +1,242 @@
+{
+	"info": {
+		"_postman_id": "f0930d53-c37a-4e7a-b0fa-fe96cb8b070a",
+		"name": "Eticadata API - Templates",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "1. /api/Shell/LoginUser",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json; charset=UTF-8"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n  \"login\":\"demo\",\n  \"password\":\"1\",\n  \"idioma\":\"pt-pt\",\n  \"server\":\"PT-ALFREDOA\\\\ETICADATA\",\n  \"sistema\":\"SIS_CUST19\"\n}"
+				},
+				"url": {
+					"raw": "http://pt-alfredoa/erpv19.local/api/Shell/LoginUser",
+					"protocol": "http",
+					"host": [
+						"pt-alfredoa"
+					],
+					"path": [
+						"erpv19.local",
+						"api",
+						"Shell",
+						"LoginUser"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "2. /api/Shell/OpenCompany",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json; charset=UTF-8"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n  \"reabertura\":true,\n  \"mostrarJanelaIniSessao\":false,\n  \"codEmpresa\":\"T19PT\",\n  \"codExercicio\":\"EX 2020\",\n  \"codSeccao\":\"1\"\n}"
+				},
+				"url": {
+					"raw": "http://pt-alfredoa/erpv19.local/api/Shell/OpenCompany",
+					"protocol": "http",
+					"host": [
+						"pt-alfredoa"
+					],
+					"path": [
+						"erpv19.local",
+						"api",
+						"Shell",
+						"OpenCompany"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "/api/StockMovs/CreateDoc",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"SectionCode\": \"1\",\n\t\"DocTypeAbbrev\": \"SAI\",\n\t\"Date\": \"2020/05/28\",\n\t\"Lines\":[{\n\t\t\"LineNumber\": 1,\n\t\t\"Warehouse\": \"1\",\n\t\t\"ItemCode\":\"001\",\n\t\t\"Quantity\":1.2,\n\t\t\"UnitCost\":123.45\n\t}]\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://pt-alfredoa/erpv19.local/api/StockMovs/CreateDoc",
+					"protocol": "http",
+					"host": [
+						"pt-alfredoa"
+					],
+					"path": [
+						"erpv19.local",
+						"api",
+						"StockMovs",
+						"CreateDoc"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "/api/StockMovs/RecalcStock",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"CloseDate\": \"2020/05/22\",\n\t\"ProcessoUntil\": null,\n\t\"Products\": [\"\",\"\"],\n\t\"Documents\": [\"\",\"\"]\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://pt-alfredoa/erpv19.local/api/StockMovs/RecalcStock",
+					"protocol": "http",
+					"host": [
+						"pt-alfredoa"
+					],
+					"path": [
+						"erpv19.local",
+						"api",
+						"StockMovs",
+						"RecalcStock"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "api/Invoices/PrintSalesDoc?fiscalYear=EX 2020&section=1&docType=FTR&number=4",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://pt-alfredoa/erpv19.local/api/Invoices/PrintSalesDoc?fiscalYear=EX 2020&section=1&docType=FATU&number=5&toFile=true",
+					"protocol": "http",
+					"host": [
+						"pt-alfredoa"
+					],
+					"path": [
+						"erpv19.local",
+						"api",
+						"Invoices",
+						"PrintSalesDoc"
+					],
+					"query": [
+						{
+							"key": "fiscalYear",
+							"value": "EX 2020"
+						},
+						{
+							"key": "section",
+							"value": "1"
+						},
+						{
+							"key": "docType",
+							"value": "FATU"
+						},
+						{
+							"key": "number",
+							"value": "5"
+						},
+						{
+							"key": "toFile",
+							"value": "true"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "http://pt-alfredoa/erpv19.local/api/CustomerTA/FindCustomers",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "\"1,2,9999\"",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://pt-alfredoa/erpv19.local/api/CustomerTA/FindCustomers",
+					"protocol": "http",
+					"host": [
+						"pt-alfredoa"
+					],
+					"path": [
+						"erpv19.local",
+						"api",
+						"CustomerTA",
+						"FindCustomers"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "http://pt-alfredoa/erpv19.local/api/CustomerTA/FindCustomer?Code=99999",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://pt-alfredoa/erpv19.local/api/CustomerTA/FindCustomer?Code=99999",
+					"protocol": "http",
+					"host": [
+						"pt-alfredoa"
+					],
+					"path": [
+						"erpv19.local",
+						"api",
+						"CustomerTA",
+						"FindCustomer"
+					],
+					"query": [
+						{
+							"key": "Code",
+							"value": "99999"
+						}
+					]
+				}
+			},
+			"response": []
+		}
+	],
+	"protocolProfileBehavior": {}
+}

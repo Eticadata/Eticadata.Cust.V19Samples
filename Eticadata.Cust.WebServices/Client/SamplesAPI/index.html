@@ -1,0 +1,123 @@
+﻿<!doctype html>
+<!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7" lang=""> <![endif]-->
+<!--[if IE 7]>         <html class="no-js lt-ie9 lt-ie8" lang=""> <![endif]-->
+<!--[if IE 8]>         <html class="no-js lt-ie9" lang=""> <![endif]-->
+<!--[if gt IE 8]><!-->
+<html class="no-js" lang="">
+ <!--<![endif]-->
+
+<head>
+    <meta charset="utf-8">
+    <meta name="description" content="Eticadata API Sample">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title></title>
+    <link rel="stylesheet" href="../../Themes/css/bootstrap.min.css">
+    <link rel="stylesheet" href="../../Themes/css/jquery.fancybox.css">
+    <link rel="stylesheet" href="../../Themes/css/owl.carousel.css">
+    <link rel="stylesheet" href="../../Themes/css/owl.transitions.css">
+    <link rel="stylesheet" href="../../Themes/css/main.css">
+    <link rel="stylesheet" href="../../Themes/css/responsive.css">
+    <link rel="stylesheet" href="../../Themes/css/animate.min.css">
+    <link rel="stylesheet" href="../../Themes/css/line-icon.css">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css">
+    <link href="../../Themes/css/EtiComponents/etiComponents.css" rel="stylesheet" />
+</head>
+
+<body>
+    <script src="../../ViewModels/SamplesAPI/SamplesAPIViewModel.js"></script>
+    <script src="../../Scripts/Generic/Translate.js"></script>
+    <script src="../../Scripts/Generic/EtiGenerics.js"></script>
+    <script src="../../Scripts/Bridge.Net/bridge.min.js"></script>
+    <script src="../../Scripts/Bridge.Net/eticadata.eRP.etiEnums.min.js"></script>
+    <script src="../../Scripts/Bridge.Net/eticadata.common.min.js"></script>
+    <script src="../../Scripts/jquery-2.1.3.min.js"></script>
+    <script src="../../Scripts/jquery-ui-1.11.2.min.js"></script>
+    <script src="../../Scripts/knockout-3.2.0.js"></script>
+    <script src="../../Scripts/knockout.mapping-latest.js"></script>
+    <script src="../../Scripts/EtiComponents/etiComponents.js"></script>
+    <script src="../../ViewModels/Tables/EditTableVM.js"></script>
+    <script src="../../ViewModels/AdittionalFields.js"></script>
+    <script>
+
+        function myFunction() {
+
+            var vm = new SamplesAPIViewModel(document.getElementById('defaultView'));
+
+        //----> document.getElementById('defaultView').textContent = vm;
+        }
+
+    </script>
+
+     <!-- header section -->
+    <header id="header">
+        <div class="header-content clearfix">
+            <a class="logo" href="#">
+                <img src="images/logo.png" alt="" width="200px">
+            </a>
+    </header>
+
+    <section class="banner" role="banner">
+        <!-- banner text section -->
+        <div id="banner" class="container">
+            <div class="col-md-5 col-sm-12">
+                <img class="banner-img img-responsive" src="images/app.png">
+            </div>
+            <div class="col-md-7 col-sm-12">
+                <div class="banner-text">
+                    <h1>SAMPLE API VIEW <span>MODEL</span></h1>
+                    <p>A Eticadata disponibiliza um exemplo de como customizar a sua API. <br></p>
+                    <div class="banner-btn">
+                        <button id="btnCliqueAqui" type="button" class="btn btn-lg btn-default" onclick="myFunction()">Clique aqui</button>
+                    </div>
+
+                    <br />
+                    <!--<p id="defaultView"></p>-->
+                    <div id="defaultView"></div>
+
+                </div><br />   
+                
+                
+                 
+                <!-- banner text section-->
+            </div>
+        </div>
+    </section>
+
+    
+
+    <!-- header section -->
+
+    <!-- footer section -->
+    <footer class="section footer">
+        <div class="footer-bottom">
+            <div class="container">
+                <div class="col-md-12">
+                    <p>
+                        <ul class="footer-share">
+                            <li><a href="https://www.facebook.com/EticadataSoftware/"><i class="fa fa-facebook"></i></a></li>
+                            <li><a href="https://plus.google.com/+eticadataSoftwareERP"><i class="fa fa-google-plus"></i></a></li>
+                            <li><a href="https://twitter.com/eticadata"><i class="fa fa-twitter"></i></a></li>
+                            <li><a href="https://www.linkedin.com/company/eticadata-software"><i class="fa fa-linkedin"></i></a></li>
+                            <li><a href="https://www.youtube.com/user/eticadatasoftware"><i class="fa fa-youtube-play"></i></a></li>
+                            <li><a href="http://www.eticadata.pt"><i class="fa fa-home"></i></a></li>
+                        </ul><br>
+                    </p>
+                    <p>© Copyright © 2018 Eticadata Software. All Rights Reserved.</p>
+                </div>
+            </div>
+        </div>
+    </footer>
+    <!-- footer section-->
+
+    <!-- Include JS files -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+    <script src="js/bootstrap.min.js"></script>
+    <script src="js/jquery.fancybox.pack.js"></script>
+    <script src="js/retina.min.js"></script>
+    <script src="js/modernizr.js"></script>
+    <script src="js/owl.carousel.min.js"></script>
+    <script src="js/jquery.subscribe.js"></script>
+    <script src="js/jquery.contact.js"></script>
+    <script src="js/main.js"></script>
+</body>
+</html>

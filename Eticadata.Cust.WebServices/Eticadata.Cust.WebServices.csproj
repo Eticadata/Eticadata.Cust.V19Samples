@@ -1,0 +1,387 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="12.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)\TypeScript\Microsoft.TypeScript.Default.props" Condition="Exists('$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)\TypeScript\Microsoft.TypeScript.Default.props')" />
+  <Import Project="..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.1.0.8\build\net45\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.props" Condition="Exists('..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.1.0.8\build\net45\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.props')" />
+  <Import Project="..\packages\Microsoft.Net.Compilers.2.6.1\build\Microsoft.Net.Compilers.props" Condition="Exists('..\packages\Microsoft.Net.Compilers.2.6.1\build\Microsoft.Net.Compilers.props')" />
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProductVersion>
+    </ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{3208BA22-0C2D-4CE6-8E07-F275B12315DD}</ProjectGuid>
+    <ProjectTypeGuids>{349c5851-65df-11da-9384-00065b846f21};{fae04ec0-301f-11d3-bf4b-00c04f79efbc}</ProjectTypeGuids>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>Eticadata.Cust.WebServices</RootNamespace>
+    <AssemblyName>Eticadata.Cust.WebServices</AssemblyName>
+    <TargetFrameworkVersion>v4.5.1</TargetFrameworkVersion>
+    <UseIISExpress>true</UseIISExpress>
+    <IISExpressSSLPort />
+    <IISExpressAnonymousAuthentication />
+    <IISExpressWindowsAuthentication />
+    <IISExpressUseClassicPipelineMode />
+    <UseGlobalApplicationHostFile />
+    <NuGetPackageImportStamp>
+    </NuGetPackageImportStamp>
+    <SccProjectName>SAK</SccProjectName>
+    <SccLocalPath>SAK</SccLocalPath>
+    <SccAuxPath>SAK</SccAuxPath>
+    <SccProvider>SAK</SccProvider>
+    <TypeScriptToolsVersion>2.5</TypeScriptToolsVersion>
+    <Use64BitIISExpress />
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>.build\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>.build\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="EntityFramework, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>Libs\Eticadata.Web\bin\EntityFramework.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="Eticadata.Abstract, Version=17.0.0.0, Culture=neutral, PublicKeyToken=b4fa931908a2cad3, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>Libs\Eticadata.Web\bin\Eticadata.Abstract.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="Eticadata.BaseCode, Version=17.0.0.0, Culture=neutral, PublicKeyToken=b4fa931908a2cad3, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>Libs\Eticadata.Web\bin\Eticadata.BaseCode.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="Eticadata.Controls, Version=17.0.0.0, Culture=neutral, PublicKeyToken=b4fa931908a2cad3, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>Libs\Eticadata.Web\bin\Eticadata.Controls.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="Eticadata.Cust.748.CombustiveisInfConsumidor, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\Edata.Cust\Projects\V19\ERP.Build\Web.00.Site\Eticadata.Web\Bin\Eticadata.Cust.748.CombustiveisInfConsumidor.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="Eticadata.DomainServices, Version=18.0.0.0, Culture=neutral, PublicKeyToken=b4fa931908a2cad3, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>Libs\Eticadata.Web\bin\Eticadata.DomainServices.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="Eticadata.ERP, Version=17.0.0.0, Culture=neutral, PublicKeyToken=b4fa931908a2cad3, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>Libs\Eticadata.Web\bin\Eticadata.ERP.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="Eticadata.EtiVersions, Version=17.0.0.0, Culture=neutral, PublicKeyToken=b4fa931908a2cad3, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>Libs\Eticadata.Web\bin\Eticadata.EtiVersions.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="Eticadata.Generics, Version=17.0.0.0, Culture=neutral, PublicKeyToken=b4fa931908a2cad3, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>Libs\Eticadata.Web\bin\Eticadata.Generics.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="Eticadata.Movs, Version=17.0.0.0, Culture=neutral, PublicKeyToken=b4fa931908a2cad3, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\Eticadata.Cust.Executable\.build\Eticadata.Movs.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="Eticadata.RiaServices.Attachments">
+      <HintPath>Libs\Eticadata.Web\bin\Eticadata.RiaServices.Attachments.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="Eticadata.RiaServices.Startup">
+      <HintPath>Libs\Eticadata.Web\bin\Eticadata.RiaServices.Startup.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="Eticadata.Tables, Version=17.0.0.0, Culture=neutral, PublicKeyToken=b4fa931908a2cad3, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>Libs\Eticadata.Web\bin\Eticadata.Tables.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="Eticadata.Views.Reports, Version=17.0.0.0, Culture=neutral, PublicKeyToken=b4fa931908a2cad3, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>Libs\Eticadata.Web\bin\Eticadata.Views.Reports.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="Eticadata.Views.Reports.XmlSerializers, Version=17.0.0.0, Culture=neutral, PublicKeyToken=b4fa931908a2cad3, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>Libs\Eticadata.Web\bin\Eticadata.Views.Reports.XmlSerializers.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="Eticadata.Web, Version=17.0.0.0, Culture=neutral, PublicKeyToken=b4fa931908a2cad3, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>Libs\Eticadata.Web\bin\Eticadata.Web.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="Eticadata.Web.Infrastruct, Version=17.0.0.0, Culture=neutral, PublicKeyToken=b4fa931908a2cad3, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>Libs\Eticadata.Web\bin\Eticadata.Web.Infrastruct.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="Microsoft.CodeDom.Providers.DotNetCompilerPlatform, Version=1.0.8.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.1.0.8\lib\net45\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="Microsoft.CSharp">
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="Newtonsoft.Json, Version=10.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
+      <HintPath>..\packages\Newtonsoft.Json.10.0.3\lib\net45\Newtonsoft.Json.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="OpenRiaServices.DomainServices.EntityFramework">
+      <HintPath>Libs\Eticadata.Web\bin\OpenRiaServices.DomainServices.EntityFramework.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="OpenRiaServices.DomainServices.Hosting">
+      <HintPath>Libs\Eticadata.Web\bin\OpenRiaServices.DomainServices.Hosting.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="OpenRiaServices.DomainServices.Hosting.Endpoint">
+      <HintPath>Libs\Eticadata.Web\bin\OpenRiaServices.DomainServices.Hosting.Endpoint.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="OpenRiaServices.DomainServices.Server">
+      <HintPath>Libs\Eticadata.Web\bin\OpenRiaServices.DomainServices.Server.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="System.Net.Http">
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="System.Web.DynamicData">
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="System.Web.Entity">
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="System.Web.ApplicationServices">
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="System.ComponentModel.DataAnnotations">
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="System">
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="System.Data">
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="System.Core">
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="System.Data.DataSetExtensions">
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="System.Web.Extensions">
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="System.Xml.Linq">
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="System.Drawing">
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="System.Web">
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="System.Xml">
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="System.Configuration">
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="System.Web.Services">
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="System.EnterpriseServices">
+      <Private>False</Private>
+    </Reference>
+  </ItemGroup>
+  <ItemGroup>
+    <Reference Include="System.Net.Http.Formatting">
+      <HintPath>..\packages\Microsoft.AspNet.WebApi.Client.5.2.3\lib\net45\System.Net.Http.Formatting.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="System.Web.Http">
+      <HintPath>..\packages\Microsoft.AspNet.WebApi.Core.5.2.3\lib\net45\System.Web.Http.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="System.Web.Http.WebHost">
+      <HintPath>..\packages\Microsoft.AspNet.WebApi.WebHost.5.2.3\lib\net45\System.Web.Http.WebHost.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Controllers\AccountingController.cs" />
+    <Compile Include="Controllers\CustomerTAController.cs" />
+    <Compile Include="Controllers\TreasuryController.cs" />
+    <Compile Include="Controllers\DigitalAttachmentsController.cs" />
+    <Compile Include="Controllers\EntitiesCategoryTAController.cs" />
+    <Compile Include="Controllers\FuelInformationController.cs" />
+    <Compile Include="Controllers\ItemsAuxTablesController.cs" />
+    <Compile Include="Controllers\PurchasesController.cs" />
+    <Compile Include="Controllers\OrdersSatisfactionTAController.cs" />
+    <Compile Include="Controllers\RepairOrdersTAController.cs" />
+    <Compile Include="Controllers\SalesTAController.cs" />
+    <Compile Include="Controllers\InvoicesController.cs" />
+    <Compile Include="Controllers\ItemsTAController.cs" />
+    <Compile Include="Controllers\CustomerOrdersTAController.cs" />
+    <Compile Include="Controllers\SettlementTAController.cs" />
+    <Compile Include="Controllers\CustUtilitiesController.cs" />
+    <Compile Include="Controllers\StockMovsController.cs" />
+    <Compile Include="Helpers\DocumentKey.cs" />
+    <Compile Include="Helpers\DocumentResult.cs" />
+    <Compile Include="Helpers\Functions.cs" />
+    <Compile Include="Models\Accounting\AccountCust.cs" />
+    <Compile Include="Models\Accounting\AccountingMov.cs" />
+    <Compile Include="Models\CustomerOrders\myCustomerOrder.cs" />
+    <Compile Include="Models\Customers\myCustomer.cs" />
+    <Compile Include="Models\Treasury\InputDepositReceipt.cs" />
+    <Compile Include="Models\EntitiesCategory\EntitiesCategory.cs" />
+    <Compile Include="Models\Items\myItem.cs" />
+    <Compile Include="Models\OrdersSatisfaction\MyOrderSatisfaction.cs" />
+    <Compile Include="Models\Purchases\myPurchase.cs" />
+    <Compile Include="Models\RepairOrders\myRepairOrder.cs" />
+    <Compile Include="Models\Sales\mySale.cs" />
+    <Compile Include="Models\Settlements\mySettlement.cs" />
+    <Compile Include="Models\Stocks\RecalcInput.cs" />
+    <Compile Include="Models\Stocks\Stock.cs" />
+    <Compile Include="Models\Treasury\InputWithdrawalTransfer.cs" />
+    <Compile Include="Models\Utilities\PrintInput.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Client\SamplesAPI\EditCustomer.html" />
+    <Content Include="Themes\css\animate.min.css" />
+    <Content Include="Themes\css\bootstrap.min.css" />
+    <Content Include="Themes\css\jquery.fancybox.css" />
+    <Content Include="Themes\css\line-icon.css" />
+    <Content Include="Themes\css\main.css" />
+    <Content Include="Themes\css\owl.carousel.css" />
+    <Content Include="Themes\css\owl.theme.css" />
+    <Content Include="Themes\css\owl.transitions.css" />
+    <Content Include="Themes\css\responsive.css" />
+    <Content Include="Themes\fonts\elegant-theme-line.svg" />
+    <Content Include="Themes\fonts\glyphicons-halflings-regular.svg" />
+    <Content Include="Themes\images\app.png" />
+    <Content Include="Themes\images\banner.jpg" />
+    <Content Include="Themes\images\blank.gif" />
+    <Content Include="Themes\images\fancybox_loading%402x.gif" />
+    <Content Include="Themes\images\fancybox_loading.gif" />
+    <Content Include="Themes\images\fancybox_overlay.png" />
+    <Content Include="Themes\images\fancybox_sprite%402x.png" />
+    <Content Include="Themes\images\fancybox_sprite.png" />
+    <Content Include="Themes\images\logo.png" />
+    <Content Include="Client\SamplesAPI\index.html" />
+    <Content Include="Scripts\js\bootstrap.min.js" />
+    <Content Include="Scripts\js\jquery.contact.js" />
+    <Content Include="Scripts\js\jquery.fancybox.pack.js" />
+    <Content Include="Scripts\js\jquery.min.js" />
+    <Content Include="Scripts\js\jquery.subscribe.js" />
+    <Content Include="Scripts\js\jquery.waypoints.min.js" />
+    <Content Include="Scripts\js\knockout-3.5.0rc2.js" />
+    <Content Include="Scripts\js\main.js" />
+    <Content Include="Scripts\js\modernizr.js" />
+    <Content Include="Scripts\js\owl.carousel.min.js" />
+    <Content Include="Scripts\js\retina.min.js" />
+    <Content Include="Client\SamplesAPI\SamplesAPI.html" />
+    <Content Include="Lang\LangHtml\lang.TrainingAction.pt-pt.js" />
+    <Content Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup />
+  <ItemGroup>
+    <Content Include="ViewModels\SamplesAPI\EditCustomer.js" />
+    <Content Include="ViewModels\SamplesAPI\SamplesAPIViewModel.js" />
+    <Content Include="web.config" />
+    <Content Include="Themes\fonts\elegant-theme-line.eot" />
+    <Content Include="Themes\fonts\elegant-theme-line.ttf" />
+    <Content Include="Themes\fonts\elegant-theme-line.woff" />
+    <Content Include="Themes\fonts\glyphicons-halflings-regular.eot" />
+    <Content Include="Themes\fonts\glyphicons-halflings-regular.ttf" />
+    <Content Include="Themes\fonts\glyphicons-halflings-regular.woff" />
+    <Content Include="Themes\fonts\glyphicons-halflings-regular.woff2" />
+    <Content Include="Documents\Postman Scripts\Eticadata API - Templates.postman_collection.json" />
+    <None Include="web.Debug.config">
+      <DependentUpon>web.config</DependentUpon>
+    </None>
+    <None Include="web.Release.config">
+      <DependentUpon>web.config</DependentUpon>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <Service Include="{4A0DDDB5-7A95-4FBF-97CC-616D07737A77}" />
+  </ItemGroup>
+  <PropertyGroup>
+    <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
+    <VSToolsPath Condition="'$(VSToolsPath)' == ''">$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)</VSToolsPath>
+  </PropertyGroup>
+  <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
+  <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)\TypeScript\Microsoft.TypeScript.targets" Condition="Exists('$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)\TypeScript\Microsoft.TypeScript.targets')" />
+  <Import Project="$(VSToolsPath)\WebApplications\Microsoft.WebApplication.targets" Condition="'$(VSToolsPath)' != ''" />
+  <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v10.0\WebApplications\Microsoft.WebApplication.targets" Condition="false" />
+  <ProjectExtensions>
+    <VisualStudio>
+      <FlavorProperties GUID="{349c5851-65df-11da-9384-00065b846f21}">
+        <WebProjectProperties>
+          <UseIIS>True</UseIIS>
+          <AutoAssignPort>True</AutoAssignPort>
+          <DevelopmentServerPort>15345</DevelopmentServerPort>
+          <DevelopmentServerVPath>/</DevelopmentServerVPath>
+          <IISUrl>http://localhost:15345/</IISUrl>
+          <NTLMAuthentication>False</NTLMAuthentication>
+          <UseCustomServer>False</UseCustomServer>
+          <CustomServerUrl>
+          </CustomServerUrl>
+          <SaveServerSettingsInUserFile>False</SaveServerSettingsInUserFile>
+        </WebProjectProperties>
+      </FlavorProperties>
+    </VisualStudio>
+  </ProjectExtensions>
+  <!-- <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
+    <PropertyGroup>
+      <ErrorText>This project references NuGet package(s) that are missing on this computer. Use NuGet Package Restore to download them.  For more information, see http://go.microsoft.com/fwlink/?LinkID=322105. The missing file is {0}.</ErrorText>
+    </PropertyGroup>
+    <Error Condition="!Exists('..\packages\Microsoft.Net.Compilers.2.6.1\build\Microsoft.Net.Compilers.props')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\Microsoft.Net.Compilers.2.6.1\build\Microsoft.Net.Compilers.props'))" />
+    <Error Condition="!Exists('..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.1.0.8\build\net45\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.props')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.1.0.8\build\net45\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.props'))" />
+  </Target>  -->
+  <PropertyGroup>
+    <PostBuildEvent>:Copy assembly to application webserver folder
+xcopy "$(TargetDir)Eticadata.Cust.*.dll" "C:\eticadata Sites\ERP v19\Eticadata.Web\Bin" /E /Y
+xcopy "$(TargetDir)Eticadata.Cust.*.pdb" "C:\eticadata Sites\ERP v19\Eticadata.Web\Bin" /E /Y
+
+:Copy html to application webserver folder
+xcopy "$(ProjectDir)Client\*.html" "C:\eticadata Sites\ERP v19\Eticadata.Web\Client\" /E /Y
+
+:Copy javascript viewmodels to application webserver folder
+xcopy "$(ProjectDir)ViewModels\*.js" "C:\eticadata Sites\ERP v19\Eticadata.Web\ViewModels" /E /Y
+
+:Copy translation file to application webserver folder
+xcopy "$(ProjectDir)Lang\LangHtml\lang.*.js" "C:\eticadata Sites\ERP v19\Eticadata.Web\Lang\LangHtml" /E /Y
+
+xcopy "$(ProjectDir)Themes\*.*" "C:\eticadata Sites\ERP v19\Eticadata.Web\Themes" /E /Y
+xcopy "$(ProjectDir)Scripts\*.*" "C:\eticadata Sites\ERP v19\Eticadata.Web\Scripts" /E /Y
+</PostBuildEvent>
+  </PropertyGroup>
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

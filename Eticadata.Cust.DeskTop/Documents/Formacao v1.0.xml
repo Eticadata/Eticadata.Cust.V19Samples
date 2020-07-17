@@ -1,0 +1,78 @@
+<?xml version="1.0" standalone="yes"?>
+<NewDataSet>
+  <Eventos>
+    <intCodigo>1</intCodigo>
+    <strDescricao>Regista se o cliente é novo.</strDescricao>
+    <strMovimento>3</strMovimento>
+    <strEvento>25</strEvento>
+    <bitInactivo>false</bitInactivo>
+    <strScript>Eticadata.Cust.DeskTop.Helpers.Events.SetIsNew(EtiApp,EtiConn,Cliente)</strScript>
+    <bitRefreshCabecalho>false</bitRefreshCabecalho>
+    <bitRefreshLinhas>false</bitRefreshLinhas>
+    <strEventoDescricao>Before Saving</strEventoDescricao>
+    <dtmAbertura>2018-01-29T00:00:00+00:00</dtmAbertura>
+    <dtmAlteracao>2018-01-29T00:00:00+00:00</dtmAlteracao>
+    <UpdateStamp>AAAAAAABzPc=</UpdateStamp>
+    <Id>1</Id>
+    <strEntidadeDescricao>Customers</strEntidadeDescricao>
+    <bitExportar>true</bitExportar>
+  </Eventos>
+  <Eventos>
+    <intCodigo>2</intCodigo>
+    <strDescricao>Cliente novo? Adiciona atividade</strDescricao>
+    <strMovimento>3</strMovimento>
+    <strEvento>26</strEvento>
+    <bitInactivo>false</bitInactivo>
+    <strScript>Eticadata.Cust.DeskTop.Helpers.Events.GetIsNew(EtiApp,EtiConn, Cliente)    
+
+Eticadata.Cust.DeskTop.Helpers.Events.AddNewActivity(EtiApp,EtiConn, Cliente) </strScript>
+    <bitRefreshCabecalho>false</bitRefreshCabecalho>
+    <bitRefreshLinhas>false</bitRefreshLinhas>
+    <strEventoDescricao>After Saving</strEventoDescricao>
+    <dtmAbertura>2018-01-29T00:00:00+00:00</dtmAbertura>
+    <dtmAlteracao>2018-01-29T00:00:00+00:00</dtmAlteracao>
+    <UpdateStamp>AAAAAAABzo4=</UpdateStamp>
+    <Id>2</Id>
+    <strEntidadeDescricao>Customers</strEntidadeDescricao>
+    <bitExportar>true</bitExportar>
+  </Eventos>
+  <Eventos>
+    <intCodigo>3</intCodigo>
+    <strDescricao>Imprime report alternativo|personal</strDescricao>
+    <strMovimento>10</strMovimento>
+    <strEvento>26</strEvento>
+    <bitInactivo>true</bitInactivo>
+    <strScript>Eticadata.Cust.DeskTop.Helpers.Events.PrintAlternativeFile(EtiApp, Venda)    
+
+Eticadata.Cust.DeskTop.Helpers.Events.PrintReportPersonalized(EtiApp, Venda)   </strScript>
+    <bitRefreshCabecalho>false</bitRefreshCabecalho>
+    <bitRefreshLinhas>false</bitRefreshLinhas>
+    <strEventoDescricao>After Saving</strEventoDescricao>
+    <dtmAbertura>2018-01-29T00:00:00+00:00</dtmAbertura>
+    <dtmAlteracao>2018-01-29T00:00:00+00:00</dtmAlteracao>
+    <UpdateStamp>AAAAAAABzo0=</UpdateStamp>
+    <Id>3</Id>
+    <strEntidadeDescricao>Sales</strEntidadeDescricao>
+    <bitExportar>true</bitExportar>
+  </Eventos>
+  <RegrasValidacao>
+    <intCodigo>1</intCodigo>
+    <strDescricao>Verifica se email está preenchido</strDescricao>
+    <bitInactivo>false</bitInactivo>
+    <strObjecto>3</strObjecto>
+    <intEvento>29</intEvento>
+    <intOrdem>0</intOrdem>
+    <strScriptCondicao>
+AvaliarRegra = Eticadata.Cust.DeskTop.Helpers.Rules.VerifyEmail(EtiApp, Cliente)      
+</strScriptCondicao>
+    <strMensagemErro>O email está por definir,</strMensagemErro>
+    <intTpAccao>1</intTpAccao>
+    <dtmAbertura>2018-01-29T00:00:00+00:00</dtmAbertura>
+    <dtmAlteracao>2018-02-02T00:00:00+00:00</dtmAlteracao>
+    <UpdateStamp>AAAAAAAB+9o=</UpdateStamp>
+    <Id>1</Id>
+    <strEntidadeDescricao>Clientes</strEntidadeDescricao>
+    <strEventoDescricao>Validação - Gravar</strEventoDescricao>
+    <bitExportar>true</bitExportar>
+  </RegrasValidacao>
+</NewDataSet>
