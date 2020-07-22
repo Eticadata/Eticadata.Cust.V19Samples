@@ -2,14 +2,12 @@
 using Eticadata.Cust.WebServices.Models.Treasury;
 using Eticadata.ERP;
 using System;
-using System.Collections.Generic;
 using System.Linq;
-using System.Web;
 using System.Web.Http;
 
 namespace Eticadata.Cust.WebServices.Controllers
 {
-    public class TreasuryController
+    public class TreasuryController : ApiController
     {
         //var input = new InputDepositReceipt()
         //{

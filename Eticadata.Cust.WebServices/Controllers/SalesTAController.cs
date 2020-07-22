@@ -95,7 +95,7 @@ namespace Eticadata.Cust.WebServices.Controllers
                 //redefinir meios de pagamento
                 var linePayMovType = 1;
 
-                if (mySale.CountLinPag > 0) mySale.DelLinhasPag();
+                if (mySale.LinesPag.Count > 0) mySale.LinesPag.Clear();
 
                 foreach (SalePayment line in pSale.LinesPayment)
                 {

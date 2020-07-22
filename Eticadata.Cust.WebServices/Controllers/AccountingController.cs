@@ -68,11 +68,11 @@ namespace Eticadata.Cust.WebServices.Controllers
 
 
                 var errors = new List<string>();
-                var res = Eti.Aplicacao.Tabelas.PlanoContas.Validate(ref account, errors);
+                var res = Eti.Aplicacao.Tabelas.PlanoContas.Validate(account, errors);
 
                 if (res)
                 {
-                    Eti.Aplicacao.Tabelas.PlanoContas.Update(ref account);
+                    Eti.Aplicacao.Tabelas.PlanoContas.Update(account);
 
                     if (account.EtiErrorDescription != "")
                     {

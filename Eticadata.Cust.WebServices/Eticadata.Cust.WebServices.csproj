@@ -16,7 +16,7 @@
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>Eticadata.Cust.WebServices</RootNamespace>
     <AssemblyName>Eticadata.Cust.WebServices</AssemblyName>
-    <TargetFrameworkVersion>v4.5.1</TargetFrameworkVersion>
+    <TargetFrameworkVersion>v4.5.2</TargetFrameworkVersion>
     <UseIISExpress>true</UseIISExpress>
     <IISExpressSSLPort />
     <IISExpressAnonymousAuthentication />
@@ -31,6 +31,7 @@
     <SccProvider>SAK</SccProvider>
     <TypeScriptToolsVersion>2.5</TypeScriptToolsVersion>
     <Use64BitIISExpress />
+    <TargetFrameworkProfile />
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
@@ -70,7 +71,7 @@
       <HintPath>Libs\Eticadata.Web\bin\Eticadata.Controls.dll</HintPath>
       <Private>False</Private>
     </Reference>
-    <Reference Include="Eticadata.Cust.748.CombustiveisInfConsumidor, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+    <Reference Include="Eticadata.Cust.748.CombustiveisInfConsumidor, Version=1.0.0.0, Culture=neutral, PublicKeyToken=b4fa931908a2cad3, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\..\..\Edata.Cust\Projects\V19\ERP.Build\Web.00.Site\Eticadata.Web\Bin\Eticadata.Cust.748.CombustiveisInfConsumidor.dll</HintPath>
       <Private>False</Private>
@@ -160,6 +161,7 @@
       <HintPath>Libs\Eticadata.Web\bin\OpenRiaServices.DomainServices.Server.dll</HintPath>
       <Private>False</Private>
     </Reference>
+    <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="System.Net.Http">
       <Private>False</Private>
     </Reference>
@@ -181,18 +183,7 @@
     <Reference Include="System.Data">
       <Private>False</Private>
     </Reference>
-    <Reference Include="System.Core">
-      <Private>False</Private>
-    </Reference>
-    <Reference Include="System.Data.DataSetExtensions">
-      <Private>False</Private>
-    </Reference>
-    <Reference Include="System.Web.Extensions">
-      <Private>False</Private>
-    </Reference>
-    <Reference Include="System.Xml.Linq">
-      <Private>False</Private>
-    </Reference>
+    <Reference Include="System.Web.Extensions" />
     <Reference Include="System.Drawing">
       <Private>False</Private>
     </Reference>
@@ -211,6 +202,7 @@
     <Reference Include="System.EnterpriseServices">
       <Private>False</Private>
     </Reference>
+    <Reference Include="System.Xml.Linq" />
   </ItemGroup>
   <ItemGroup>
     <Reference Include="System.Net.Http.Formatting">
@@ -307,7 +299,6 @@
   <ItemGroup>
     <Content Include="ViewModels\SamplesAPI\EditCustomer.js" />
     <Content Include="ViewModels\SamplesAPI\SamplesAPIViewModel.js" />
-    <Content Include="web.config" />
     <Content Include="Themes\fonts\elegant-theme-line.eot" />
     <Content Include="Themes\fonts\elegant-theme-line.ttf" />
     <Content Include="Themes\fonts\elegant-theme-line.woff" />
@@ -316,12 +307,6 @@
     <Content Include="Themes\fonts\glyphicons-halflings-regular.woff" />
     <Content Include="Themes\fonts\glyphicons-halflings-regular.woff2" />
     <Content Include="Documents\Postman Scripts\Eticadata API - Templates.postman_collection.json" />
-    <None Include="web.Debug.config">
-      <DependentUpon>web.config</DependentUpon>
-    </None>
-    <None Include="web.Release.config">
-      <DependentUpon>web.config</DependentUpon>
-    </None>
   </ItemGroup>
   <ItemGroup>
     <Service Include="{4A0DDDB5-7A95-4FBF-97CC-616D07737A77}" />

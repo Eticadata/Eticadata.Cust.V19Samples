@@ -14,7 +14,8 @@ namespace Eticadata.Cust.WebServices.Controllers
 {
     public class FuelInformationController : ApiController
     {
-
+        [HttpPost]
+        [Authorize]
         public IHttpActionResult SaveExternalInvoice([FromBody] Models.mySale document)
         {
             byte[] reportBytes;
@@ -37,8 +38,6 @@ namespace Eticadata.Cust.WebServices.Controllers
             {
                 sale = Eti.Aplicacao.Movimentos.MovVendas.GetNew(document.DocTypeAbbrev, document.SectionCode);
                 sale.Cabecalho.CodExercicio = document.FiscalYear;
-
-                sale.Cabecalho.AplicacaoOrigem = "WS";
 
                 sale.Cabecalho.Data = document.Date.Date;
                 sale.Cabecalho.DataVencimento = document.ExpirationDate;
@@ -84,23 +83,48 @@ namespace Eticadata.Cust.WebServices.Controllers
                     saleLine.DescontoValorLinha = line.DiscountValue;
                     sale.AlteraDesconto(4, numberLine, saleLine.DescontoValorLinha);
 
-                    //// INFORMAÇÃO COMBUSTÍVEIS
+                    
+                }
 
+                /// Marca como documento externo, para não recalcular informação de combustiveis
+                sale.IsDocExterno = true;
+                /// sale.AlteraInfoCertificacao("999", "1", "sdfhkdfFASDGFSfgsfgjsklgfsk394wrkd", "FT 1/598");
+
+                /// INFORMAÇÃO COMBUSTÍVEIS
+                foreach (dynamic customInfo in document.CustomInfo)
+                {
                     sale.AddISPLines(new List<EC748.CombustiveisInfConsumidor.Models.ISPCombustivel>()
                     {
                         new EC748.CombustiveisInfConsumidor.Models.ISPCombustivel()
                         {
-                            ISPCateg = "",
-                            ISPTaxa = 1.1,
-                            ISPUnid = 1.1,
-                            Quantidade = 1.1,
-                            TaxaCalculada = 1.1,
-                            TipoComb = "",
+                            
+                            ISPCateg = customInfo.ISPCateg,
+                            ISPTaxa = customInfo.ISPTaxa,
+                            ISPUnid = customInfo.ISPUnid,
+                            Quantidade = customInfo.Quantidade,
+                            TaxaCalculada = customInfo.TaxaCalculada,
+                            TipoComb = customInfo.TipoComb,
+                            
                         }
                     });
 
+                    sale.AddISPInfoLines(new List<EC748.CombustiveisInfConsumidor.Models.ISPCombustivelInfo>()
+                    {
+                        new EC748.CombustiveisInfConsumidor.Models.ISPCombustivelInfo()
+                        {
+                            EmissaoUnidade = customInfo.EmissaoUnidade,
+                            EmissaoCO2 = customInfo.EmissaoCO2,
+                            FossilPerc = customInfo.FossilPerc,
+                            ISPCategoria = customInfo.ISPCateg,
+                            ISPNomenclatura = customInfo.ISPNomenclatura,
+                            RenovavelPerc = customInfo.RenovavelPerc,
+                            SobreCusto = customInfo.SobreCusto,
+                            tpCombustivel = customInfo.TipoComb
+                        }
+                    });
                 }
-
+                /// INFORMAÇÃO COMBUSTÍVEIS
+                
                 var validate = sale.Validate(true);
                 if (validate)
                 {

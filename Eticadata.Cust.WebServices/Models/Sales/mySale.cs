@@ -15,6 +15,8 @@ namespace Eticadata.Cust.WebServices.Models
         public List<SalesLine> Lines { get; set; } = new List<SalesLine>();
         public List<SalePayment> LinesPayment { get; set; } = new List<SalePayment>();
         public bool GetReportBytes { get; set; } = false;
+
+        public dynamic CustomInfo { get; set; }
     }
 
     public class SalesLine
