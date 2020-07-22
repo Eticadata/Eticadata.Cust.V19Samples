@@ -14,6 +14,45 @@ namespace Eticadata.Cust.WebServices.Controllers
 {
     public class FuelInformationController : ApiController
     {
+        
+            //{
+            //	"FiscalYear":"EX 2020",
+            //	"SectionCode":"1",
+            //	"DocTypeAbbrev":"FTR",
+            //	"EntityCode":"502395028",
+            //	"Date":"2020/07/21",
+            //	"ExpirationDate":"2020/07/21",
+            //	"CurrencyCode":"EUR",
+            //	"Lines":[
+            //		{
+            //			"LineNumber": "1",
+            //	        "ItemCode": "GAS95",
+            //	        "ItemDescription": "GASOLINA 95",
+            //	        "Quantity": "19.29",
+            //	        "VATTax": "23",
+            //	        "UnitPriceExcludedVAT": "28.14",
+            //	        "Discount1": "0",
+            //	        "Discount2": "0",
+            //	        "Discount3": "0",
+            //	        "DiscountValue": "0"
+            //        }
+            //	],
+            //	"CustomInfo":[{
+            //		"ISPCateg": "A",
+            //		"ISPTaxa": 0.667,
+            //		"ISPUnid": 1.0,
+            //		"Quantidade": 19.29,
+            //		"TaxaCalculada": 12.87,
+            //		"TipoComb": "Gasolina 95 Simples",
+            //		"EmissaoUnidade": "kgCO2eq/l",
+            //		"EmissaoCO2": 2.1,
+            //		"FossilPerc": 90,
+            //		"ISPNomenclatura": "E5",
+            //		"RenovavelPerc": 10,
+            //		"SobreCusto": 0.667
+            //    }]
+            //}
+
         [HttpPost]
         [Authorize]
         public IHttpActionResult SaveExternalInvoice([FromBody] Models.mySale document)
