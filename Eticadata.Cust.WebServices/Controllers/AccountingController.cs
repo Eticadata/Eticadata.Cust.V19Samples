@@ -28,7 +28,27 @@ namespace Eticadata.Cust.WebServices.Controllers
                 objMov.get_LinhasPlano(Eti.Aplicacao.Ambiente.BaseCodePlan)[line.Number].DescConta = line.Description;
                 objMov.get_LinhasPlano(Eti.Aplicacao.Ambiente.BaseCodePlan)[line.Number].DebCre = line.Signal.ToString();
                 objMov.get_LinhasPlano(Eti.Aplicacao.Ambiente.BaseCodePlan)[line.Number].Valor = line.Value;
+
+
+                objMov.get_LinhasPlano(Eti.Aplicacao.Ambiente.BaseCodePlan)[line.Number].LinhasCC.Insert(objMov.get_LinhasPlano(Eti.Aplicacao.Ambiente.BaseCodePlan)[line.Number].LinhasCC.Count + 1);
+
+                var lineCC = objMov.get_LinhasPlano(Eti.Aplicacao.Ambiente.BaseCodePlan)[line.Number].LinhasCC[objMov.get_LinhasPlano(Eti.Aplicacao.Ambiente.BaseCodePlan)[line.Number].LinhasCC.Count];
+
+                lineCC.CodePlan = Eti.Aplicacao.Ambiente.BaseCodePlan;
+                lineCC.CodigoDiario = objMov.Cabecalho.CodigoDiario;
+                lineCC.NumDiario = objMov.Cabecalho.NumDiario;
+                lineCC.CodigoExercicio = objMov.Cabecalho.CodigoExercicio;
+                lineCC.Conta = objMov.get_LinhasPlano(Eti.Aplicacao.Ambiente.BaseCodePlan)[line.Number].Conta;
+                lineCC.Descricao = objMov.get_LinhasPlano(Eti.Aplicacao.Ambiente.BaseCodePlan)[line.Number].DescConta;
+                lineCC.DebCre = objMov.get_LinhasPlano(Eti.Aplicacao.Ambiente.BaseCodePlan)[line.Number].DebCre;
+                lineCC.Data = objMov.Cabecalho.Data;
+                lineCC.Valor = objMov.get_LinhasPlano(Eti.Aplicacao.Ambiente.BaseCodePlan)[line.Number].Valor;
+                lineCC.ValorMoeda = objMov.get_LinhasPlano(Eti.Aplicacao.Ambiente.BaseCodePlan)[line.Number].ValorMoeda;
+                lineCC.Percentagem = 100.0;
+
             }
+
+            
 
             try
             {
