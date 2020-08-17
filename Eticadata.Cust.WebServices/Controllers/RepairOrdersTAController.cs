@@ -101,6 +101,24 @@ namespace Eticadata.Cust.WebServices.Controllers
                     myRepairOrder.CalculaTotaisLinha(newLine);
                 }
 
+                // Linhas de actividades
+
+                /// Obtem primeiro grupo de componentes de atividades
+                int defaultNode = myRepairOrder.DocumentoActividades.GetFirstNumNodo();
+                if (defaultNode == 0)
+                {
+                    defaultNode = myRepairOrder.DocumentoActividades.GetNextNumNodo();
+                }
+
+                ///Adiciona atividades à ordem de reparação
+                foreach (var activity in pRepairOrder.Activities)
+                {
+                    MovOrdemReparacaoItensActividade actividade = myRepairOrder.Actividades.CreateNew();
+                    myRepairOrder.Actividades.Add(actividade);
+                    actividade.NodoPai = defaultNode;
+                    actividade.CodTipoActividade = activity.ActivityCode;
+                    actividade.Solicitado = true;
+                }
 
                 var validate = myRepairOrder.Validate(true, ref lstMsg, 0);
                 if (validate)

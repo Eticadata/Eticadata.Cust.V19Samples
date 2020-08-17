@@ -15,6 +15,12 @@ namespace Eticadata.Cust.WebServices.Models.RepairOrders
         public List<MaterialsLine> LinesMaterials { get; set; } = new List<MaterialsLine>();
         public List<InternalServicesLine> LinesInternalServices { get; set; } = new List<InternalServicesLine>();
         public List<ExternalServicesLine> LinesExternalServices { get; set; } = new List<ExternalServicesLine>();
+        public List<Activities> Activities { get; set; } = new List<Activities>();
+    }
+    
+    public class Activities
+    {
+        public string ActivityCode { get; set; }
     }
 
     public class MaterialsLine
