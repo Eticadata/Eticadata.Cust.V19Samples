@@ -1,4 +1,5 @@
 ﻿using Eticadata.Common;
+using Eticadata.ERP;
 using Eticadata.ERP.EtiEnums;
 using Eticadata.Views.Reports;
 using System;
@@ -7,6 +8,35 @@ namespace Eticadata.Cust.WebServices.Helpers
 {
     public static class Functions
     {
+        public static byte[] GetReportBytes(EtiAplicacao EtiApp, TpDocumentoAEmitir typeDocToPrint, DocumentKey docKey)
+        {
+            byte[] reportBytes = null;
+            byte[] emailBytes = null;
+            bool isCFDoc;
+
+            try
+            {
+                var inputParameters = new ElectronicSignature.ReportParameters()
+                {
+                    TpDocEmit = typeDocToPrint,
+                    AbrevTpDoc = docKey.DocTypeAbbrev,
+                    CodeFiscalYear = docKey.FiscalYear,
+                    CodeSection = docKey.SectionCode,
+                    Number = docKey.Number,
+                    ToPrinter = false
+                };
+
+                Eticadata.Reporting.ReportProvider.EmitDocumentAndSendEmail(ref inputParameters, out reportBytes, ref emailBytes, out isCFDoc, EtiApp);
+
+            }
+            catch (Exception ex)
+            {
+                throw new Exception(ex.Message);
+            }
+
+            return reportBytes;
+        }
+
         public static byte[] GetReportBytes(TpDocumentoAEmitir typeDocToPrint, DocumentKey docKey)
         {
             byte[] reportBytes = null;

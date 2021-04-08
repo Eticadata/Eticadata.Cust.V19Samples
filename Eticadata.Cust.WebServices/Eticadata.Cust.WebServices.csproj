@@ -101,6 +101,11 @@
       <HintPath>..\Eticadata.Cust.Executable\.build\Eticadata.Movs.dll</HintPath>
       <Private>False</Private>
     </Reference>
+    <Reference Include="Eticadata.Reporting, Version=19.0.0.0, Culture=neutral, PublicKeyToken=b4fa931908a2cad3, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\Edata.Cust\Projects\V19\ERP.Build\Web.00.Site\Eticadata.Web\bin\Eticadata.Reporting.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
     <Reference Include="Eticadata.RiaServices.Attachments">
       <HintPath>Libs\Eticadata.Web\bin\Eticadata.RiaServices.Attachments.dll</HintPath>
       <Private>False</Private>
