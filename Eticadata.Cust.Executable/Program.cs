@@ -8,7 +8,6 @@ using Eticadata.Infrastruct;
 using Newtonsoft.Json.Linq;
 using System;
 using System.Collections.Generic;
-using System.Collections.Specialized;
 using System.IO;
 
 namespace Eticadata.Cust.Executable
@@ -20,14 +19,14 @@ namespace Eticadata.Cust.Executable
             EtiAppAuthentication authentication = new EtiAppAuthentication()
             {
                 serviceAddress = IniFile.IniRead(Path.Combine(IniFile.GetBasePath(), "ERPV19.eInic.ini"), "Geral", "ServerUrl", ""),
-                SQLServerName = @"PT-ALFREDOA",
+                SQLServerName = @"PT-ALFREDOA\ETICADATA",
                 SQLUser = "sa",
                 SQLPassword = "Pl@tinum",
                 SystemDatabase = "SIS_CUST19",
                 Login = "demo",
                 Password = "1",
                 Company = "T19PT",
-                FiscalYearCode = "EX 2020",
+                FiscalYearCode = "EX 2021",
                 SectionCode = "1",
                 Language = "pt-PT"
             };
@@ -42,7 +41,7 @@ namespace Eticadata.Cust.Executable
                 //List<EntitiesCategory> entitiesCategory = Functions.GetEntitiesCategory(authentication);
 
                 //Criar documento de venda
-                MovVenda venda = etiApp.Movimentos.MovVendas.GetNew("FATU");
+                MovVenda venda = etiApp.Movimentos.MovVendas.GetNew("FACT");
 
                 venda.Cabecalho.CodEntidade = 1;
                 venda.AlteraEntidade(ERP.EtiEnums.TpEntidade.Cliente, 1, true, true);
@@ -58,9 +57,6 @@ namespace Eticadata.Cust.Executable
 
                 venda.CalculaTotais();
 
-                venda.Cabecalho.Anulado = true;
-                venda.AlteraStatusAnulado(true);
-                venda.IntegracaoOffLine = true;
                 var validateVenda = venda.Validate(true);
 
                 if (!validateVenda)
@@ -69,61 +65,16 @@ namespace Eticadata.Cust.Executable
                 } else {
                     bool blnSTKImpeditivo = false;
                     etiApp.Movimentos.MovVendas.Update(ref venda, ref blnSTKImpeditivo, true, TpLigacaoExtra.SemLigacao, string.Empty);
-                }
-
-                //Criar Recibo
-                MovLiquidacao mySettlement = etiApp.Movimentos.MovLiquidacoes.GetNew("REC", "1");
-                mySettlement.IntegracaoOffLine = true;
-                mySettlement.Cabecalho.Anulado = true;
-
-                mySettlement.Cabecalho.CodEntidade = 1;
-                mySettlement.AlteraEntidade(1, true);
-
-                //Obtem venda que está a ser liquidada
-                venda = etiApp.Movimentos.MovVendas.Find(venda.Cabecalho.AbrevTpDoc, venda.Cabecalho.CodExercicio, venda.Cabecalho.Numero, venda.Cabecalho.CodSeccao);
-                bool anuladoAnt = venda.Cabecalho.Anulado;
-                
-                //Se o documento de venda estiver anulado, remove o anulado e grava, para poder fazer a ligação
-                if (venda.Cabecalho.Anulado)
-                {
-                    venda.Cabecalho.Anulado = false;
-                    venda.AlteraStatusAnulado(false);
-                    bool blnSTKImpeditivo = false;
-                    etiApp.Movimentos.MovVendas.Update(ref venda, ref blnSTKImpeditivo, true, TpLigacaoExtra.SemLigacao, string.Empty);
-                }
-
-                mySettlement.FindDocs(0, 0, 0, 0, 1, false, String.Empty, 1, 1, true, venda.Cabecalho.CodSeccao, venda.Cabecalho.AbrevTpDoc, venda.Cabecalho.CodExercicio, venda.Cabecalho.Numero, 1);
-                var linePend = mySettlement.get_LinhaOfPendente(venda.Cabecalho.CodSeccao, venda.Cabecalho.AbrevTpDoc, venda.Cabecalho.CodExercicio, venda.Cabecalho.Numero);
-                var lineSettlement = mySettlement.get_LinhaOfDocumento(venda.Cabecalho.CodSeccao, venda.Cabecalho.AbrevTpDoc, venda.Cabecalho.CodExercicio, venda.Cabecalho.Numero);
-
-                short IRS = 0;
-                mySettlement.AlteraConfirmacao(lineSettlement.NumLinha, true, ref IRS);
-                linePend.Confirmacao = 1;
-                
-                var validate = mySettlement.Validate();
-                if (!validate)
-                {
-                    Console.WriteLine(mySettlement.EtiErrorDescription); 
-                } 
-                else
-                {
-                    etiApp.Movimentos.MovLiquidacoes.Update(ref mySettlement);
-                }
-
-                //Se o documento de venda estava anulado antes da liquidação, volta a anular.
-                if (anuladoAnt)
-                {
-                    venda = etiApp.Movimentos.MovVendas.Find(venda.Cabecalho.AbrevTpDoc, venda.Cabecalho.CodExercicio, venda.Cabecalho.Numero, venda.Cabecalho.CodSeccao);
-                    venda.Cabecalho.Anulado = true;
-                    venda.AlteraStatusAnulado(true);
-                    bool blnSTKImpeditivo = false;
-                    etiApp.Movimentos.MovVendas.Update(ref venda, ref blnSTKImpeditivo, true, TpLigacaoExtra.SemLigacao, string.Empty);
+                    if(venda.EtiErrorCode != "")
+                    {
+                        Console.WriteLine(venda.EtiErrorDescription);
+                    }
+                    Helpers.Functions.PrintToPrinter(etiApp, venda.Cabecalho.CodExercicio, venda.Cabecalho.CodSeccao, venda.Cabecalho.AbrevTpDoc, venda.Cabecalho.Numero);
                 }
             }
             catch (Exception ex)
             {
-                //tratar erro
-                //escrever lo log                
+                Console.Write(ex.Message);
             }
         }
     }

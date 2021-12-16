@@ -1,6 +1,6 @@
-﻿using Eticadata.Common;
-using Eticadata.Cust.Executable.Models;
+﻿using Eticadata.Cust.Executable.Models;
 using Eticadata.ERP;
+using Eticadata.ERP.EtiEnums;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
 using System;
@@ -13,6 +13,37 @@ namespace Eticadata.Cust.Executable.Helpers
 {
     public static class Functions
     {
+        
+        public static void PrintToPrinter(EtiAplicacao etiApp, string DocFiscalYearCode, string DocSeccion, string DocType, int DocNumber)
+        {
+            Eticadata.Views.Reports.ReportsGcePOS report = new Views.Reports.ReportsGcePOS(etiApp, "", ERP.EtiEnums.ExportWebFormat.PDF);
+
+            byte[] reportBytes;
+
+            var rptProp = new Eticadata.Common.EtiReportProperties()
+            {
+                TpDocAEmitir = TpDocumentoAEmitir.Vendas,
+                AbrevTpDoc = DocType,
+                CodExercicio = DocFiscalYearCode,
+                CodSeccao = DocSeccion,
+                Numero = DocNumber,
+                EtiApp = etiApp,
+                ExportaFicheiro = false,
+                SoExportacao = false,
+                ToPrinter = true,
+                IncrementPrintCount = true,
+                Application = ReportApplication.BackOffice,
+                ExportaFormato = "1"
+            };
+
+            reportBytes = report.EmiteDocumentos(rptProp);
+
+            if (!string.IsNullOrEmpty(rptProp.ErrorDescription))
+            {
+                throw new Exception(rptProp.ErrorDescription);
+            }
+        }
+
         public static EtiAplicacao GetNewEtiAplicacao(EtiAppAuthentication authentication)
         {
             EtiAplicacao etiApp = new EtiAplicacao();
