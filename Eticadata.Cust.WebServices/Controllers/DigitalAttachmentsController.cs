@@ -1,11 +1,7 @@
-﻿using Eticadata.ERP;
-using Eticadata.ERP.EtiEnums;
-using Eticadata.ErpAuthentication;
+using Eticadata.ERP;
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Net;
-using System.Net.Http;
 using System.Web.Http;
 
 namespace Eticadata.Cust.WebServices.Controllers
@@ -19,64 +15,49 @@ namespace Eticadata.Cust.WebServices.Controllers
         {
             try
             {
-                Eticadata.RiaServices.AuthenticationService authSvc = new RiaServices.AuthenticationService();
-                string strCustomData = Eticadata.LoginData.GetCustomData("(LocalDB)\\MSSQLLocalDB", "sistema", string.Empty, true, true, "pt-PT", string.Empty);
-                EtiAplicacao etiApp = new EtiAplicacao();
-
-                var myEtiUser = authSvc.Login("demo", "demo", false, strCustomData);
-                if (myEtiUser != null)
+                var attach = new Attachment()
                 {
-                    switch (myEtiUser.loginResult)
-                    {
-                        case 0:
-                            etiApp = Eti.Aplicacao;
-                            break;
-                        case 2:
-                            throw new Exception("The user does not exists!");
-                        case 3:
-                            throw new Exception("The user is inactive!");
-                        default:
-                            throw new Exception("The user does not exists!");
-                    }
-                }
+                    AttachmentEntities = new List<AttachmentEntity>(){
+                                    new AttachmentEntity()
+                                    {
+                                        TipoEntidade = (int)Eticadata.ERP.EtiEnums.CodTabelas.Clientes,
+                                        Chave1 = "1"
+                                    }
+                                },
 
-                bool initResult = etiApp.OpenEmpresa("D18");
-
-                if (!initResult)
-                    throw new Exception("OpenCompany: Não foi possivel efetuar a autenticação no ERP.");
-
-                initResult = etiApp.OpenExercicio("EX 2018");
-
-                if (!initResult)
-                    throw new Exception("OpenFiscalYear: Não foi possivel efetuar a autenticação no ERP.");
-
-                initResult = etiApp.OpenSeccao("SEC1");
-
-                if (!initResult)
-                    throw new Exception("OpenSection: Não foi possivel efetuar a autenticação no ERP.");
-
-                RiaServices.Attachments.Services.AnexosDigitaisService attachSrv = new RiaServices.Attachments.Services.AnexosDigitaisService();
-
-                attachSrv.UpdateAnexoDigital(new RiaServices.Attachments.Models.AnexoDigital()
-                {
-                    Entidades = new System.Data.Entity.Core.Objects.DataClasses.EntityCollection<RiaServices.Attachments.Models.Entidade>() { new RiaServices.Attachments.Models.Entidade()
-                    {
-                         TipoEntidade = (int)TpEntidade.Cliente,
-                         Chave1 = "1"
-                    }},
-                    TipoDocumentacao = "DOC",
                     CodDocumentacao = "BI",
                     DataEmissao = DateTime.Now,
-                    CodSituacao = 0,
+                    CodSituacao = 3,
                     DataSituacao = DateTime.Now,
                     Ficheiro = Convert.FromBase64String(base64Document),
-                    Ref = "0001/2018",
+                    WithElectronicSignature = false,
+                    IdFicheiro = $"{DateTime.Now.Month}_{DateTime.Now.Year}.txt",
+                    Obs = "Documento anexado ao cliente 1",
                     Local = "SEDE",
-                    Obs = "Documento anexado ao cliente 1"
-                });
+                    Ref = "0001/2018",
+                };
+
+                var validate = Eti.Aplicacao.TablesEntities.Attachments.Validate(attach).ToList();
+                if (validate.Count == 0)
+                {
+                    var b = Eti.Aplicacao.TablesEntities.Attachments.Update(attach, true);
+                }
+                else
+                {
+                    var error1 = validate.FirstOrDefault();
+                    var Message = error1.Message;
+                    if (Message == "")
+                    {
+                        var lstErro = Eti.Aplicacao.TablesEntities.Attachments.GetErrorList();
+                        Message = lstErro.Where(w => w.Key == error1.Code).FirstOrDefault().Value;
+                    }
+
+                    return BadRequest(error1.Code + ":" + Message);
+                }
 
                 return Ok();
-            } catch (Exception ex)
+            }
+            catch (Exception ex)
             {
                 return BadRequest(ex.Message);
             }
