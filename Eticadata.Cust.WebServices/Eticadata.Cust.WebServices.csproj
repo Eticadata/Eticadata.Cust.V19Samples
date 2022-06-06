@@ -16,7 +16,7 @@
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>Eticadata.Cust.WebServices</RootNamespace>
     <AssemblyName>Eticadata.Cust.WebServices</AssemblyName>
-    <TargetFrameworkVersion>v4.5.2</TargetFrameworkVersion>
+    <TargetFrameworkVersion>v4.5.1</TargetFrameworkVersion>
     <UseIISExpress>true</UseIISExpress>
     <IISExpressSSLPort />
     <IISExpressAnonymousAuthentication />
@@ -114,6 +114,11 @@
       <HintPath>Libs\Eticadata.Web\bin\Eticadata.RiaServices.Startup.dll</HintPath>
       <Private>False</Private>
     </Reference>
+    <Reference Include="Eticadata.Services.Admin, Version=19.0.0.0, Culture=neutral, PublicKeyToken=b4fa931908a2cad3, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\EDATA.CUST\Projects\V19\ERP.Build\Web.00.Site\Eticadata.Web\bin\Eticadata.Services.Admin.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
     <Reference Include="Eticadata.Tables, Version=17.0.0.0, Culture=neutral, PublicKeyToken=b4fa931908a2cad3, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>Libs\Eticadata.Web\bin\Eticadata.Tables.dll</HintPath>
@@ -189,13 +194,13 @@
     <Reference Include="System.Data">
       <Private>False</Private>
     </Reference>
-    <Reference Include="System.Web.Extensions" />
     <Reference Include="System.Drawing">
       <Private>False</Private>
     </Reference>
     <Reference Include="System.Web">
       <Private>False</Private>
     </Reference>
+    <Reference Include="System.Web.Extensions" />
     <Reference Include="System.Xml">
       <Private>False</Private>
     </Reference>
@@ -227,6 +232,8 @@
   <ItemGroup>
     <Compile Include="Controllers\AccountingController.cs" />
     <Compile Include="Controllers\CustomerTAController.cs" />
+    <Compile Include="Controllers\QueryController.cs" />
+    <Compile Include="Controllers\SettlmentController.cs" />
     <Compile Include="Controllers\TreasuryController.cs" />
     <Compile Include="Controllers\DigitalAttachmentsController.cs" />
     <Compile Include="Controllers\EntitiesCategoryTAController.cs" />
@@ -301,7 +308,15 @@
     <Content Include="Lang\LangHtml\lang.TrainingAction.pt-pt.js" />
     <Content Include="packages.config" />
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <Content Include="web.config" />
+    <None Include="web.Debug.config">
+      <DependentUpon>web.config</DependentUpon>
+    </None>
+    <None Include="web.Release.config">
+      <DependentUpon>web.config</DependentUpon>
+    </None>
+  </ItemGroup>
   <ItemGroup>
     <Content Include="ViewModels\SamplesAPI\EditCustomer.js" />
     <Content Include="ViewModels\SamplesAPI\SamplesAPIViewModel.js" />

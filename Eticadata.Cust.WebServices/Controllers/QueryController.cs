@@ -1,11 +1,7 @@
 ﻿using Eticadata.ERP;
-using Eticadata.RiaServices;
 using Newtonsoft.Json.Linq;
 using System;
-using System.Collections.Generic;
-using System.Linq;
 using System.Reflection;
-using System.Web;
 using System.Web.Http;
 
 namespace Eticadata.Cust.WebServices.Controllers
@@ -13,31 +9,48 @@ namespace Eticadata.Cust.WebServices.Controllers
     public class QueryController : ApiController
     {
 
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="ID">BD6CA420-CE6B-42A7-AA04-3815BDE34A4D</param>
+        /// <param name="Parameters">1;2017/01/01;2017/10/19</param>
+        /// <returns></returns>
         [Authorize]
         [HttpGet]
-        public IHttpActionResult GetFinancialData(String ID, string Parameters)
+        public IHttpActionResult GetFinancialData(string id, string[] Parameters)
         {
-            JArray result = new JArray();
+            object result = null;
             try
             {
-                string[] body = Parameters.Replace("*", "%").Replace("{", "").Replace("}", "").Replace("[", "").Replace("]", "").Replace("'", "").Replace("\"", "").Split(';');
-                dynamic filter = new JObject();
-                
-                filter.tipoExportacao = Eticadata.ERP.EtiEnums.QExportType.Excel;
-                filter.idConsulta = ID;
-                filter.firstCall = false;
-                filter.paramValores = JArray.FromObject(body);
-                filter.initParams = "";
-                filter.pagingInfo = "{'pageSize':0,'pageIndex':0}";
-                filter.filteringInfo = new JArray();
-                filter.sortingInfo = new JArray();
-                filter.hidingInfo = "{'hiddenKeys':'','showedKeys':''}";
-                filter.sizingInfo = "";
-
-                var query = RequestHelper.Request(serverURL + "/api/queries/GetConsultaInfo", "POST", filter);
-                if (query != null && query.consultaResult != null)
+                var consultaInput = new Queries.Structures.ConsultaInput()
                 {
-                    result = query.consultaResult.dataSource;
+                    tipoExportacao = Eticadata.ERP.EtiEnums.QExportType.Excel,
+                    idConsulta = id,
+                    firstCall = false,
+                    paramValores = Parameters,
+                    paramNames = new string[] { },
+                    initParams = "",
+                    filteringInfo = new Eticadata.Queries.Structures.ConsultaInputFiltering[0] { },
+                    sortingInfo = new Eticadata.Queries.Structures.ConsultaInputSorting[0] { },
+                    hidingInfo = new Eticadata.Queries.Structures.ConsultaInputHiding()
+                    {
+                        hiddenKeys = "",
+                        showedKeys = "",
+                    },
+                    sizingInfo = "",
+                };
+
+                var consultaInfo = new Eticadata.Services.Admin.QueriesController().GetConsultaInfo(consultaInput);
+
+                if (consultaInfo.StatusCode == System.Net.HttpStatusCode.OK)
+                {
+                    var reply = consultaInfo.Content.ReadAsStringAsync().Result;
+                    dynamic obj = JObject.Parse(reply);
+
+                    if (obj != null && obj.consultaResult != null && obj.consultaResult.dataSource != null)
+                    {
+                        return Ok(obj.consultaResult.dataSource);
+                    }
                 }
             }
             catch (Exception ex)
