@@ -232,6 +232,7 @@
   <ItemGroup>
     <Compile Include="Controllers\AccountingController.cs" />
     <Compile Include="Controllers\CustomerTAController.cs" />
+    <Compile Include="Controllers\CardsReloadingController.cs" />
     <Compile Include="Controllers\QueryController.cs" />
     <Compile Include="Controllers\SettlmentController.cs" />
     <Compile Include="Controllers\TreasuryController.cs" />
